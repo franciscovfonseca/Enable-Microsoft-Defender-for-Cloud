@@ -2,25 +2,109 @@
 
 <h1 align="center">Enabling Microsoft Defender for Cloud</h1>
 
+<br>
+
 <p align="center">
 <img width="800" src="https://github.com/user-attachments/assets/77162ed6-a76e-4475-a6e0-ecea427069b2" alt="Banner"/>
 <br />
 
 <br />
 
-In this lab we're going to create a 3ʳᵈ Virtual Machine called ```attack-vm``` and we're going to perform actions against our current environment.
+In this lab we're going to Enable Microsoft Defender for Cloud.
 
-From the **Attack-VM** we're going to act as an attacker and attemp to log into the **SQL Server Database**, the **Windows Vm** & the **Linux VM with SSH**.
+Microsoft Defender for Cloud gives us a highlevel view of our Azure Environment in terms of Security and Secure Score.
 
-After that we'll observe the **Logs Generated** from those actions.
+It also allows us to take Logs from Virtual Machines and NSGs and ingest them into our Log Analytics Workspace.
 
-We are basically simulating someone trying to break into our environmet, and then see what logs are created, just to get a good sense of what happens behind the scenes.
+So that's what we will be doing in this lab ➜ Set Up Microsoft Defender for Cloud.
 
 <br />
 
 <details close> 
-<summary> <h2> 1️⃣ Create our Attack Virtual Machine</h2> </summary>
+<summary> <h2> 1️⃣ Enable Microsoft Defender for Cloud for Log Analytics Workspace</h2> </summary>
 <br>
+
+> First thing we're going to do is Enable Defender for Cloud for our Log Analytics Workspace.
+> 
+> This will allow us to forward Logs from the Virtual Machines into the LAW.
+
+<br>
+
+Got to the **Azure Portal** > search for **"Defender for Cloud***:
+
+![azure portal](https://github.com/user-attachments/assets/259c4d7a-ca98-4046-93a0-3472a839f47d)
+
+Then we'll click on **"Environment settings"**:
+
+![azure portal](https://github.com/user-attachments/assets/259c4d7a-ca98-4046-93a0-3472a839f47d)
+
+Expand the ```∨``` next to **"Azure subscription 1"** > and on the right side click on ```...``` > and then **"Edit settings"**:
+
+![azure portal](https://github.com/user-attachments/assets/259c4d7a-ca98-4046-93a0-3472a839f47d)
+
+First we'll go to the **"Defender plans"** tab.
+
+So now we'll **Turn On** MDC for **"Servers"** as well as for **"SQL servers on machines"** ➜ since we do have a SQL Server instance.
+
+<br>
+
+>   <details close> 
+>   
+> **<summary> 💡 </summary>**
+> 
+> This will allow us to **Collect Logs** from these resources.
+> 
+>   </details>
+
+<br>
+
+Make sure you click the 💾 **Save** button:
+
+![azure portal](https://github.com/user-attachments/assets/259c4d7a-ca98-4046-93a0-3472a839f47d)
+
+Then we'll go to the **"Data collection"** tab > and check **"All Events"**
+
+<br>
+
+>   <details close> 
+>   
+> **<summary> 💡 </summary>**
+> 
+> This will allow us to **Collect All Events from the Windows Security Log**.
+> 
+> Which is like the **Windows Event Viewer**, where we can see people attempting to **Log Into our Windows Machines over the Internet**.
+> 
+> We're going to be able to **Collect Logs** from that and then **Forward Them to this Log Analytics Workspace**.
+> 
+>   </details>
+
+<br>
+
+Again ➜ click the 💾 **Save** button:
+
+![azure portal](https://github.com/user-attachments/assets/259c4d7a-ca98-4046-93a0-3472a839f47d)
+
+Now we can go back to 
+
+
+
+
+
+
+
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+
+
+
+
 
 The first thing we're going to do in this lab is **Create another Windows VM outside of the US** to simulate an attack from anyhere in the world.
 
