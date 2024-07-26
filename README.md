@@ -1,6 +1,6 @@
 <br>
 
-<h1 align="center">Enabling Microsoft Defender for Cloud</h1>
+<h1 align="center">Enable Microsoft Defender for Cloud</h1>
 
 <br>
 
