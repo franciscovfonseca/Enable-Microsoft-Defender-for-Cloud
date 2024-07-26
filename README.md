@@ -30,7 +30,7 @@ So that's what we will be doing in this lab ➜ Set Up Microsoft Defender for Cl
 
 <br>
 
-Got to the **Azure Portal** > search for **"Defender for Cloud***:
+Got to the **Azure Portal** ➜ search for **"Defender for Cloud***:
 
 ![azure portal](https://github.com/user-attachments/assets/259c4d7a-ca98-4046-93a0-3472a839f47d)
 
@@ -38,7 +38,9 @@ Then we'll click on **"Environment settings"**:
 
 ![azure portal](https://github.com/user-attachments/assets/259c4d7a-ca98-4046-93a0-3472a839f47d)
 
-Expand the ```∨``` next to **"Azure subscription 1"** > and on the right side click on ```...``` > and then **"Edit settings"**:
+Expand the ```∨``` next to **"Azure subscription 1"**
+
+All the way on the right side for the **"LAW--Cyber-Lab-01"** line ➜ click on ```...``` ➜ and then **"Edit settings"**:
 
 ![azure portal](https://github.com/user-attachments/assets/259c4d7a-ca98-4046-93a0-3472a839f47d)
 
@@ -62,7 +64,7 @@ Make sure you click the 💾 **Save** button:
 
 ![azure portal](https://github.com/user-attachments/assets/259c4d7a-ca98-4046-93a0-3472a839f47d)
 
-Then we'll go to the **"Data collection"** tab > and check **"All Events"**
+Then we'll go to the **"Data collection"** tab ➜ and check **"All Events"**
 
 <br>
 
@@ -84,185 +86,132 @@ Again ➜ click the 💾 **Save** button:
 
 ![azure portal](https://github.com/user-attachments/assets/259c4d7a-ca98-4046-93a0-3472a839f47d)
 
-Now we can go back to 
+  </details>
 
+<h2></h2>
 
-
-
-
-
-
-
+<details close> 
+<summary> <h2>2️⃣ Enable Microsoft Defender for Cloud for the Subscription</h2> </summary>
 <br>
 
-<br>
+Go back to the **MDC** ➜ **"Environment settings"**
 
-<br>
-
-<br>
-
-
-
-
-
-
-The first thing we're going to do in this lab is **Create another Windows VM outside of the US** to simulate an attack from anyhere in the world.
-
-Go to the **Azure Portal** > Click on **Virtual Machines** > **Create a Virtual Machine**:
-
-![azure portal](https://github.com/user-attachments/assets/4032bf0f-95dd-4edd-a1a2-c714da69ba61)
-
-
-- Name the Resource Group: ```RG-Cyber-Lab-Attacker```
-- Region:  Outside the US ➜ ```Australia Central``` for example
-- Virtual Machine Name: ```attack-vm```
-- Image: ```Image 10 Pro```
-- Size: at least ```2vcpus```
-- Username: ```labuser```
-- Password: ```Cyberlab123!```
+This time for the **"Azure subsription 1"** line ➜ click on ```...``` ➜ and then **"Edit settings"**:
 
 ![azure portal](https://github.com/user-attachments/assets/259c4d7a-ca98-4046-93a0-3472a839f47d)
 
-For the **Networking Tab** ➜ Name the **Virtual Network**: ```Lab-VNet-Attacker```
-
-Then click **Review + Create**
-
-![azure portal](https://github.com/user-attachments/assets/fe92eaa7-a8b2-4cee-a0bb-6f7dd36b1450)
-
-<h2></h2>
-
-<br>
-
-Now we're going to log into the Attack VM to make sure it works:
-
-- Copy the Attack Vm's **Public IP Address**:
-
-![azure portal](https://github.com/user-attachments/assets/f614eae5-0760-45a9-8d83-4f5f8ec6f258)
-
-- We're going to open **Microsoft Remote Desktop** > Add a New PC > Paste the **IP Address for the Attack VM**
-
-![azure portal](https://github.com/user-attachments/assets/217832f9-3203-43a2-9b7b-524f0253f7b0)
-
-- Double Click the **"New Added PC"** and type in the **Username & Password Credentials** we set up earlier:
-
-  - Username: ```labuser```
-  - Password: ```Cyberlab123!```
-
-![azure portal](https://github.com/user-attachments/assets/b6622b8a-2af8-4c19-9823-c1f4594ae7e1)
-
-✅ We were able to log in to the VM
-
-<br>
-
-  </details>
-
-<h2></h2>
-
-<details close> 
-<summary> <h2>2️⃣ Generate some Failed RDP Logs against the windows-vm</h2> </summary>
-<br>
-
-> From within the **Attack Vm**, we're going to **attemp to RDP connect to the Windows VM**.
-> 
-> The logins will fail, but some Logs will be generated for us to look at later inside the Windows VM.
-
-<br>
-
-Go back to the **Azure Portal** and copy the **Public IP Address of the Windows VM**:
-
-![azure portal](https://github.com/user-attachments/assets/55a2c962-8229-4fa1-89df-d7a9264e9e45)
-
-Now inside the **attack-vm** > open **Remote Desktop Connection** > Paste the **Public IP Address of the Windows VM** and connect
-
-![azure portal](https://github.com/user-attachments/assets/b1790beb-344f-4d2d-af49-9a6f30f282f8)
-
-For the **Credentials** ➜ use some random made up **Username & Password** ➜ username ```josh``` for example
-
-Since this user does not exist in the Windows VM ➜ the **Log In will Fail**
-
-![azure portal](https://github.com/user-attachments/assets/ba4a924d-eb07-474c-8020-21e4ce0ad6d7)
-
-Repeat the **Failed Log In** 2 more times with the same **Wrong Username & Password**
-
-<br>
-
-✅ So 3 Logs have been Generated on the Windows VM ➜ which we will analyse later
-
-<br>
-
-  </details>
-
-<h2></h2>
-
-<details close> 
-<summary> <h2>3️⃣ Generate some Failed SQL Server Authentication Logs against the windows-vm</h2> </summary>
-<br>
-
-> Remember that we installed the SQL Server Database in the Windows VM ➜ so we're going to attempt to log into it now.
-> 
-> Still within the **Attack VM**, we're going to install **SSMS** ➜ which we'll use to attempt to log into the SQL Server
-
-<br>
-
-Go back to the **Attack VM** > Using **Microsoft Edge** > You can **[Download SSMS through this link](https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms)**
-
-Open the **SSMS-Setup-ENU.exe** File from the Downloads > **Install** it
-
-![azure portal](https://github.com/user-attachments/assets/ef8cd4ad-57df-40d6-b5b3-abca01b901bc)
-
-![azure portal](https://github.com/user-attachments/assets/3688d252-582b-4dd5-8cc9-8949bbd2f757)
-
+So now we'll Turn MDC On for **"Servers"**, **"Databases"**, **"Storage"** & **"Key Vault"**.
 
 >   <details close> 
 >   
-> **<summary> 💡 Note</summary>**
+> **<summary> 💡 </summary>**
 > 
-> We're going to use this **SSMS** to **Connect to the SQL Server in our Windows VM**.
+> We'll create a Storage Account and Key Vault instances in a subsequent lab.
 > 
-> Once the **Installation is Completed** ➜ we'll take the **Windows VM's Public IP Address** (which is where the **SQL Server** is) ➜ and we're going to **Generate some Logs** by attempting to Log Into it as a bad actor.
-> 
-> And then at the end of this lab we'll log back into the **Windows VM** again and **Inspect the Logs**
-> 
-> We'll also log into the **Linux VM** and **Inspect the Logs** in there as well.
 >   </details>
 
-<br>
+Then click on **"Settings >"** under **"Monitoring coverage"** for the **Servers**:
 
-<h2></h2>
+![azure portal](https://github.com/user-attachments/assets/259c4d7a-ca98-4046-93a0-3472a839f47d)
 
-<br>
+We'll now click on **"Edit configuration"** for the **Log Analytics agent**.
 
-Now we're going to open **SSMS**:
+And for the **Workspace** ➜ pick our actual ```LAW--Cyber-Lab-01``` workspace
 
-![azure portal](https://github.com/user-attachments/assets/8be34c69-6216-4aa7-b2f3-d633f2d82c2b)
+>   <details close> 
+>   
+> **<summary> 💡 </summary>**
+> 
+> We don't want it to automatically create a new LAW ➜ we want to use the one we created.
+> 
+> We're basically onboarding our Virtual Machines to our LAW and then forward the Logs to it
+> 
+>   </details>
 
-Then we'll copy the **IP Address of the Windows VM** ➜ which has the **SQL Server**
+Make sure you click **"Apply"** and then 💾 **Continue**:
 
-- in Server Name: we'll Paste the **IP Address**
-- Authentication: **SQL Server Authentication**
-- then our Real **Username** is ```sa``` & **Password** is ```Cyberlab123!```
+![azure portal](https://github.com/user-attachments/assets/259c4d7a-ca98-4046-93a0-3472a839f47d)
 
-  - but we're going to login with a user that doesn't exist ➜ so we can **Generate Failed Logs**
+After that we'll click on the 💾 **Save** button to save the **Defender plans for the Subscription**:
 
-![azure portal](https://github.com/user-attachments/assets/edb1c19c-5959-4764-a183-c74a9e5d6e76)
-
-We'll **Attemp and Fail** to Login 2 more times to **Generate a total of 3 Failed Logins**
-
-Then we'll "Login For Real" with the correct **Username** & **Password** just to show that we can Login from **Australia (Attack VM)**
-
-![azure portal](https://github.com/user-attachments/assets/f70930a6-50b1-49f5-8fad-7b56571eaed1)
-
-We can then disconnect from the Server:
-
-![azure portal](https://github.com/user-attachments/assets/8d0f297f-b5ba-4933-8597-903be7144b25)
+![azure portal](https://github.com/user-attachments/assets/259c4d7a-ca98-4046-93a0-3472a839f47d)
 
   </details>
 
 <h2></h2>
 
 <details close> 
-<summary> <h2>4️⃣ Generated some Failed SSH Logs against the linux-vm</h2> </summary>
+<summary> <h2>3️⃣ Enable Microsoft Defender for Cloud Continuous Export in Environment Settings</h2> </summary>
 <br>
+
+Still inside the **"Edit settings"** for the Subscription ➜ we'll go to the **"Continous export"** blade now.
+
+Click on the **"Log Analytics workspace"** tab ➜ and make sure **"Export enabled"** is **Turned On**:
+
+>   <details close> 
+>   
+> **<summary> 💡 </summary>**
+> 
+> Doing this will **Export Alerts into our LAW** so we can **Query Them Later**.
+> 
+> So if **Defender for Cloud** discovers there's some problem with our Environment, like a **Brute-Force Attack** going on, or there's a **Poor Configuration** for example ➜ MDC will **Export those Alerts into our LAW** ➜ which will let us **Query Them Later**
+> 
+>   </details>
+
+![azure portal](https://github.com/user-attachments/assets/259c4d7a-ca98-4046-93a0-3472a839f47d)
+
+So we'll enable ☑️ **Exported data types** for all of the following options:
+
+>   <details close> 
+>   
+> **<summary> 💡 </summary>**
+> 
+> We didn't actually configure **"Regulatory compliance"** yet, but we'll do that in a future lab.
+> 
+> This will basically enable **NIST 800-53** for our Environment to see what controls are missing in certain areas.
+> 
+>   </details>
+
+![azure portal](https://github.com/user-attachments/assets/259c4d7a-ca98-4046-93a0-3472a839f47d)
+
+For the **"Export configuration"** option let's just configure it to our **Resource group** ```RG-Cyber-Lab```
+
+And also for the **"Export target"** we'll select our **Target Workspace** ```LAW-Cyber-Lab-01```
+
+>   <details close> 
+>   
+> **<summary> 💡 </summary>**
+> 
+> This is the Target workspace where we want to Export the Alerts to ➜ so we have to select our LAW
+> 
+>   </details>
+
+We'll then click 💾 **Save**
+
+![azure portal](https://github.com/user-attachments/assets/259c4d7a-ca98-4046-93a0-3472a839f47d)
+
+  </details>
+
+<h2></h2>
+
+<details close> 
+<summary> <h2>4️⃣ Ensure MDC didn’t create another Log Analytics Workspace ➜ Delete it if so</h2> </summary>
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 > Lastly, we're going to induce some **Failed Authentications against the Linux Server**.
 > 
