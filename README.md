@@ -212,17 +212,20 @@ Primarily it will allow us to take **Logs from our Virtual Machines** and **Forw
 
 We also enabled Defender for Cloud for Storage Account & Key Vault which we will Set Up and Use in future labs.
 
+<br>
 
+>   <details close> 
+>   
+> **<summary> 💡 Preview</summary>**
+> 
+> In the next lab we'll continue onboarding our **Virtual Machines & Network Security Groups**.
+>   
+> Then we're going to **Manually Install the Agent** on them to forward the Logs into our Log Analytics Workspace.
+> 
+> And then hopefully we'll be able to start actually **Querying the Logs Centrally**.
+> 
+>   </details>
 
-
-
-We have to keep in mind hat if we have, let's say, 1000 computers in our Environment ➜  it would be too laborious to just login into each one of them, and analyse the each log indivudually this way.
-
-That's why we are going to **Automatically Ingest all the Logs into a Central Repository**.
-
-We'll Set Up Queries to Automatically look through the Logs and Alert us on certain Events.
-
-This is the end of our **Logging and Monitoring Lab**, and in the next phases we're going to Inspect Logs, Create Incidents & Respond to those Incidents.
 
 <br />
 
@@ -237,4 +240,9 @@ This is the end of our **Logging and Monitoring Lab**, and in the next phases we
 <br />  
 
 <br /> 
+
+<br />
+
+<br />
+
  
